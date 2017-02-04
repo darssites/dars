@@ -1,7 +1,27 @@
-from dars import home
+from classes.Paragraph import Paragraph
+from classes.Italics import Italics
+from classes.Link import Link
+from classes.Header import Header
+from classes.Code import Code
+from classes.JScript import JScript
 
-# Write a header
-home.newHeader("Hello World", 2)
-home.newParagraph("Hello. This is some [b]formatting[/b].")
+def code(page):
 
-home.close()
+	title = Header("Your Dars Site")
+	page.append(title)
+
+	js = JScript('''
+		function disp() {
+			alert("Hello World!")
+		}
+		''')
+	page.append(js)
+
+	world = Italics("World")
+	para = Paragraph("Hello " + world.getRaw())
+	page.append(para)
+
+	linkTest = Link("Click me", function="disp()")
+	page.append(linkTest)
+
+	page.close()
