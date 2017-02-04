@@ -14,7 +14,7 @@ def code(page):
 		function disp() {
 			alert("Hello World!")
 		}
-		''')
+		''') # Some embedded JS!
 	page.append(js)
 
 	world = Italics("World")
