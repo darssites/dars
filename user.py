@@ -1,27 +1,30 @@
-from classes.Paragraph import Paragraph
-from classes.Italics import Italics
-from classes.Link import Link
+from classes.Tags import *
+from classes.Stylesheet import Stylesheet
 from classes.Header import Header
-from classes.Code import Code
-from classes.JScript import JScript
+from classes.Rule import Rule
+from classes.Paragraph import Paragraph
 
 def code(page):
 
-	title = Header("Your Dars Site")
+	page.setTitle("La-La-Land")
+
+	style = Stylesheet()
+
+	redRule = Rule("color", "red")
+	underlineRule = Rule("text-decoration", "underline")
+	style.addRule(getHTMLTag("Header"), redRule.text() + underlineRule.text())
+
+	orangeRule = Rule("color", "orange")
+	style.addRule(getHTMLTag("Paragraph"), orangeRule.text())
+
+	page.append(style)
+
+	page.addDefaultStyle()
+
+	title = Header("Moo")
 	page.append(title)
 
-	js = JScript('''
-		function disp() {
-			alert("Hello World!")
-		}
-		''') # Some embedded JS!
-	page.append(js)
-
-	world = Italics("World")
-	para = Paragraph("Hello " + world.getRaw())
-	page.append(para)
-
-	linkTest = Link("Click me", function="disp()")
-	page.append(linkTest)
+	text = Paragraph("Hello World. I'm a paragraph.")
+	page.append(text)
 
 	page.close()
