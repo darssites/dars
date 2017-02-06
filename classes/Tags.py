@@ -4,7 +4,8 @@ tags = {
 	"Link": "a",
 	"Code": "code",
 	"Bold": "b",
-	"Italics": "i"
+	"Italics": "i",
+	"Image": "img"
 }
 
 def getHTMLTag(darsName):

@@ -15,8 +15,8 @@ def usage():
 def generate():
 	print("Generating...")
 
-	if not os.path.exists("serve"):
-		os.makedirs("serve")
+	if not os.path.exists(config["settings"]["serveTo"]):
+		os.makedirs(config["settings"]["serveTo"])
 		print("Creating serve directory...")
 	else:
 		print("Located serve directory, moving on...")
