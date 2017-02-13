@@ -2,3 +2,6 @@ settings:
   title: "Moo"
   port: 80 # Default for Browsers
   serveTo: "serve"
+  
+plugins:
+  # No plugins
