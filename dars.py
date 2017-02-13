@@ -1,6 +1,11 @@
 import sys, os, yaml
 from darssite import DarsSite
 import serve
+import importlib
+
+# Open config
+with open('config/config.yml', 'r') as f:
+    config = yaml.load(f)
 
 import user # the user's generation code
 
@@ -26,15 +31,23 @@ def generate():
 
 	user.code(page)
 
+	# Load referenced plugins
+for plugin in config["plugins"]:
+	print("plugin-import: " + "plugins." + plugin + "." + plugin)
+	i = importlib.import_module("plugins." + plugin + "." + plugin)
+
+	print("plugin-init: " + plugin)
+	try:
+		if i.init:
+			i.init(config)
+	except:
+		print("plugin-init: No init() function in " + plugin + ".py!")
+
 if len(sys.argv) == 1:
 	usage()
 	sys.exit()
 
 command = sys.argv[1]
-
-# Open config
-with open('config/config.yml', 'r') as f:
-    config = yaml.load(f)
 
 if command == "generate":
 	generate()
