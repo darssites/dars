@@ -32,16 +32,17 @@ def generate():
 	user.code(page)
 
 	# Load referenced plugins
-for plugin in config["plugins"]:
-	print("plugin-import: " + "plugins." + plugin + "." + plugin)
-	i = importlib.import_module("plugins." + plugin + "." + plugin)
+	if "plugins" in config:
+		for plugin in config["plugins"]:
+			print("plugin-import: " + "plugins." + plugin + "." + plugin)
+			i = importlib.import_module("plugins." + plugin + "." + plugin)
 
-	print("plugin-init: " + plugin)
-	try:
-		if i.init:
-			i.init(config)
-	except:
-		print("plugin-init: No init() function in " + plugin + ".py!")
+			print("plugin-init: " + plugin)
+			try:
+				if i.init:
+					i.init(config)
+			except:
+				print("plugin-init: No init() function in " + plugin + ".py!")
 
 if len(sys.argv) == 1:
 	usage()
