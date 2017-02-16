@@ -4,3 +4,8 @@
 
 all:
 	python dars.py generate
+
+install:
+	@echo Installing dars...
+	pip install -r requirements # Install requirements
+	

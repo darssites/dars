@@ -1,6 +1,16 @@
 # dars [![Build Status](https://travis-ci.org/darssites/dars.svg?branch=master)](https://travis-ci.org/darssites/dars)
 The webpage making thing written in Python. Meant to give a different approach to web development; for those who are good with scripting languages and want to do web dev.
 
+## Setup
+
+To install all the dependencies, run
+	
+	make install
+
+If you don't have [make](https://www.gnu.org/software/make/), either get it, or run
+
+    pip install -r requirements
+
 ## How to
 
 You'll be putting all your code in the `user.py` file.
