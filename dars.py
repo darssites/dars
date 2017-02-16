@@ -20,29 +20,32 @@ def usage():
 def generate():
 	print("Generating...")
 
-	if not os.path.exists(config["settings"]["serveTo"]):
-		os.makedirs(config["settings"]["serveTo"])
-		print("Creating serve directory...")
-	else:
-		print("Located serve directory, moving on...")
-	pageFile = open('serve/index.html', 'w+')
+	pageFile = open(config["settings"]["serveTo"] + "/index.html", "w+")
 
 	page = DarsSite(pageFile, config["settings"]["title"])
 
-	user.code(page)
-
-	# Load referenced plugins
-	if "plugins" in config:
+	try:
+		config["plugins"]
+	except:
+		print("No plugins section to your config.yml, not loading any plugins.")
+		print("NOTE: If you want plugins, add this at the bottom of your config:")
+		print("config:")
+		print("  - plugin")
+		print("  - names")
+		print("  - here")
+	else:
+		# Load referenced plugins
 		for plugin in config["plugins"]:
 			print("plugin-import: " + "plugins." + plugin + "." + plugin)
 			i = importlib.import_module("plugins." + plugin + "." + plugin)
 
 			print("plugin-init: " + plugin)
 			try:
-				if i.init:
-					i.init(config)
+				i.init(page, config)
 			except:
 				print("plugin-init: No init() function in " + plugin + ".py!")
+
+	user.code(page)
 
 if len(sys.argv) == 1:
 	usage()

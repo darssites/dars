@@ -1,4 +1,4 @@
-# dars [![Build Status](https://travis-ci.org/darssites/dars.svg?branch=master)](https://travis-ci.org/darssites/dars)
+# dars [![Build Status](https://travis-ci.org/gusg21/dars.svg?branch=master)](https://travis-ci.org/gusg21/dars)
 The webpage making thing written in Python. Meant to give a different approach to web development; for those who are good with scripting languages and want to do web dev.
 
 ## How to

@@ -1,3 +1,5 @@
+import yaml, importlib
+
 class DarsSite:
 
 	file = None
@@ -32,6 +34,25 @@ class DarsSite:
 
 		self.writing = True # We can now write stuff to the file
 		self.fHeader = self.header.format(self.title) # Add in title
+
+		# Open config
+		with open('config/config.yml', 'r') as f:
+			config = yaml.load(f)
+
+		try:
+			config["plugins"]
+		except:
+			print("darssite.py: No plugins found, moving on...")
+		else:
+			# Load referenced plugins
+			for plugin in config["plugins"]:
+				i = importlib.import_module("plugins." + plugin + "." + plugin)
+
+				print("plugin-site-init: " + plugin)
+				try:
+					i.site(self)
+				except:
+					print("plugin-init: No site() function in " + plugin + ".py!")
 
 	def append(self, obj):
 		if self.writing:
@@ -127,5 +148,6 @@ div.footer {
 			'''
 
 	def close(self):
+		print("file-write: " + self.file.name)
 		self.file.write(self.fHeader + self.internal + self.footer)
 		self.writing = False
