@@ -3,4 +3,4 @@ python:
 - "3.6"
 install: "pip install -r requirements"
 script:
-- py dars.py make
+- python dars.py generate
