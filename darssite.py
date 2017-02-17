@@ -17,6 +17,12 @@ class DarsSite:
 	  		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	  		<meta name="viewport" content="width=device-width,initial-scale=1">
 	    	<title>{}</title>
+
+	'''
+
+	headContent = ""
+
+	endHead = '''
 	  	</head>
 	  	<body>
 	'''
@@ -149,5 +155,5 @@ div.footer {
 
 	def close(self):
 		print("file-write: " + self.file.name)
-		self.file.write(self.fHeader + self.internal + self.footer)
+		self.file.write(self.fHeader + self.headContent + self.endHead + self.internal + self.footer)
 		self.writing = False
