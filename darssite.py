@@ -70,7 +70,7 @@ class DarsSite:
 
 	def addDefaultStyle(self):
 		if self.writing:
-			self.headContent += '''
+			self.headContent += r'''
 <style>
 
 /* Default Dars Stylesheet */
@@ -132,7 +132,7 @@ a:link, a:visited {
 
 a:hover, a:active {
 
-  color: #FF9933;
+  color: #FF9933; 
 
 }
 
@@ -155,6 +155,28 @@ table, th, td {
     border: 2px solid darkgray;
     border-collapse: collapse;
 }
+
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+blockquote p {
+  display: inline;
+}
+
 </style>
 			'''
 

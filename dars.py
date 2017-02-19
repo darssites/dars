@@ -5,7 +5,7 @@ import importlib
 
 # Open config
 with open('config/config.yml', 'r') as f:
-    config = yaml.load(f)
+	config = yaml.load(f)
 
 import user # the user's generation code
 
