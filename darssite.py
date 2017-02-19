@@ -70,7 +70,7 @@ class DarsSite:
 
 	def addDefaultStyle(self):
 		if self.writing:
-			self.internal += '''
+			self.headContent += '''
 <style>
 
 /* Default Dars Stylesheet */
@@ -149,6 +149,11 @@ div.footer {
 
   padding-top: 30pt;
 
+}
+
+table, th, td {
+    border: 2px solid darkgray;
+    border-collapse: collapse;
 }
 </style>
 			'''

@@ -55,12 +55,10 @@ command = sys.argv[1]
 
 if command == "generate":
 	generate()
-
-
-if command == "make":
+elif command == "make":
 	generate()
 	serve.serve(PORT=config["settings"]["port"])
-
-
-if command == "serve":
+elif command == "serve":
 	serve.serve(PORT=config["settings"]["port"])
+else:
+	usage()
