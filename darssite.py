@@ -1,3 +1,9 @@
+#
+# darssite.py
+# The main class, all other classes get appended to this.
+# Author: gusg21
+#
+
 import yaml, importlib
 
 class DarsSite:

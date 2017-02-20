@@ -1,3 +1,15 @@
+#
+# dars.py
+# The main program, meant as the entry point.
+# Author: gusg21
+#
+
+##########################
+###	  GLOBAL VERSION   ###
+##########################
+
+GLOBALVERSION = "2.2"
+
 import sys, os, yaml
 from darssite import DarsSite
 import serve
@@ -26,6 +38,7 @@ def usage():
 	print("- serve")
 	print("- make")
 	print("- plugins")
+	print("- version")
 	print(style["important"] + "\nExample:" + style["reset"])
 	print("python dars.py generate")
 
@@ -40,6 +53,10 @@ def plugins():
 def get_immediate_subdirectories(a_dir):
     return [name for name in os.listdir(a_dir)
             if os.path.isdir(os.path.join(a_dir, name))]
+
+def version():
+	print("Dars Web framework version " + GLOBALVERSION)
+	print("Written by gusg21")
 
 def generate():
 	print(style["important"] + "Generating..." + style["reset"])
@@ -86,5 +103,7 @@ elif command == "serve":
 	serve.serve(PORT=config["settings"]["port"])
 elif command == "plugins":
 	plugins()
+elif command == "version":
+	version()
 else:
 	usage()

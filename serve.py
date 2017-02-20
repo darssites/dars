@@ -1,3 +1,8 @@
+#
+# A simple webserver MEANT FOR TESTING based off of http.server.
+# Invoke with py dars.py serve. Serves from the directory give in the config.
+#
+
 import http.server
 import socketserver
 import os
