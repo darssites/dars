@@ -192,14 +192,19 @@ blockquote p {
 			config = yaml.load(f)
 
 		# Load referenced plugins
-		for plugin in config["plugins"]:
-			i = importlib.import_module("plugins." + plugin + "." + plugin)
+		try:
+			config["plugins"]
+		except:
+			print("...")
+		else:
+			for plugin in config["plugins"]:
+				i = importlib.import_module("plugins." + plugin + "." + plugin)
 
-			print("plugin-site-close: " + plugin)
-			try:
-				i.closesite(self)
-			except:
-				print("plugin-init: No closesite() function in " + plugin + ".py!")
+				print("plugin-site-close: " + plugin)
+				try:
+					i.closesite(self)
+				except:
+					print("plugin-init: No closesite() function in " + plugin + ".py!")
 
 		print("file-write: " + self.file.name)
 		self.file.write(self.fHeader + self.headContent + self.endHead + self.internal + self.footer)
