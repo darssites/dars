@@ -8,7 +8,7 @@
 ###	  GLOBAL VERSION   ###
 ##########################
 
-GLOBALVERSION = "2.2"
+GLOBALVERSION = "2.2.1"
 
 import sys, os, yaml
 from darssite import DarsSite
