@@ -132,7 +132,7 @@ a:link, a:visited {
 
 a:hover, a:active {
 
-  color: #FF9933; 
+  color: #FF9933;
 
 }
 
@@ -181,6 +181,20 @@ blockquote p {
 			'''
 
 	def close(self):
+		# Open config
+		with open('config/config.yml', 'r') as f:
+			config = yaml.load(f)
+
+		# Load referenced plugins
+		for plugin in config["plugins"]:
+			i = importlib.import_module("plugins." + plugin + "." + plugin)
+
+			print("plugin-site-close: " + plugin)
+			try:
+				i.closesite(self)
+			except:
+				print("plugin-init: No closesite() function in " + plugin + ".py!")
+
 		print("file-write: " + self.file.name)
 		self.file.write(self.fHeader + self.headContent + self.endHead + self.internal + self.footer)
 		self.writing = False
