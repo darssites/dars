@@ -55,7 +55,7 @@ def get_immediate_subdirectories(a_dir):
             if os.path.isdir(os.path.join(a_dir, name))]
 
 def version():
-	print("Dars Web framework version " + GLOBALVERSION)
+	print("Dars Web framework version " + style["important"] + GLOBALVERSION + style["reset"])
 	print("Written by gusg21")
 
 def generate():
