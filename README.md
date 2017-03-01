@@ -9,7 +9,9 @@ To install all the dependencies, run
 
 If you don't have [make](https://www.gnu.org/software/make/), either get it, or run
 
-    pip install -r requirements
+	pip install -r requirements
+    
+Which installs all the dependencies.
 
 ## How to
 
