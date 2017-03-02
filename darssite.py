@@ -70,6 +70,10 @@ class DarsSite:
 		if self.writing:
 			self.internal += obj.getRaw()
 
+	def appendRaw(self, text):
+		if self.writing:
+			self.internal += text
+
 	def setTitle(self, title):
 		if self.writing:
 			self.fHeader = self.header.format(title)
@@ -195,7 +199,7 @@ blockquote p {
 		try:
 			config["plugins"]
 		except:
-			print("...")
+			pass
 		else:
 			for plugin in config["plugins"]:
 				i = importlib.import_module("plugins." + plugin + "." + plugin)
