@@ -2,11 +2,12 @@
 # The user's code.
 #
 
-from classes.Layout import Layout
+from classes.Paragraph import Paragraph
 
 def code(page):
 
-	columns = Layout("given-layouts/2column.yml", page)
+	text = Paragraph("Mooooooo!")
+	page.append(text)
 
 	page.addDefaultStyle()
 

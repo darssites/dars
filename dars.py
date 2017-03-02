@@ -8,11 +8,11 @@
 ###	  GLOBAL VERSION   ###
 ##########################
 
-GLOBALVERSION = "2.3"
+GLOBALVERSION = "2.4"
 
 import sys, os, yaml
 from darssite import DarsSite
-import serve
+import serve, packman
 import importlib
 import colorama
 
@@ -39,6 +39,7 @@ def usage():
 	print("- make")
 	print("- plugins")
 	print("- version")
+	print("- install")
 	print(style["important"] + "\nExample:" + style["reset"])
 	print("python dars.py generate")
 
@@ -105,5 +106,14 @@ elif command == "plugins":
 	plugins()
 elif command == "version":
 	version()
+elif command == "install":
+	try:
+		sys.argv[2]
+	except:
+		print(style["error"] + "Malformed packman command!" + style["reset"])
+		print("Usage:")
+		print("python dars.py install [gh user/repo OR package name]")
+	else:
+		packman.packman(sys.argv[2])
 else:
 	usage()

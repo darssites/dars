@@ -1,0 +1,9 @@
+# THE MAPS
+#
+# When the user enters "example" as their
+# package to install, packman will search
+# this file. If it finds the key "example"
+# it will clone github.com/[value]
+
+example: "darssites/example"
+jqdars: "darssites/jqdars"
