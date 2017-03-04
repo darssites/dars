@@ -7,8 +7,8 @@ import http.server
 import socketserver
 import os
 
-def serve(PORT=80):
-	web_dir = os.path.join(os.path.dirname(__file__), 'serve')
+def serve(PORT=80, SERVE="."):
+	web_dir = os.path.join(os.path.dirname(__file__), SERVE)
 	os.chdir(web_dir)
 
 	Handler = http.server.SimpleHTTPRequestHandler

@@ -18,6 +18,7 @@ import colorama
 
 colorama.init()
 
+# Common styles for easy use
 style = {
 		"error" : colorama.Fore.RED,
 	 	"warning" : colorama.Fore.YELLOW,
@@ -33,6 +34,9 @@ with open('config/config.yml', 'r') as f:
 import user # the user's generation code
 
 def usage():
+
+	# TEXT DISPLAYED FOR HELP
+
 	print(style["important"] + "Commands: " + style["reset"])
 	print("- generate")
 	print("- serve")
@@ -44,6 +48,8 @@ def usage():
 	print("python dars.py generate")
 
 def plugins():
+	# List all installed plugins
+
 	print(style["important"] + "Installed Plugins: " + style["reset"])
 	if get_immediate_subdirectories("plugins") == []:
 		print(style["error"] + "No plugins found. They should be in your plugins folder." + style["reset"])
@@ -52,14 +58,20 @@ def plugins():
 			print("- " + dir)
 
 def get_immediate_subdirectories(a_dir):
+	# A little function for listing direct subdirectories.
+
     return [name for name in os.listdir(a_dir)
             if os.path.isdir(os.path.join(a_dir, name))]
 
 def version():
+	# Print version number
+
 	print("Dars Web framework version " + style["important"] + GLOBALVERSION + style["reset"])
 	print("Written by gusg21")
 
 def generate():
+	# Generate the site. Most of the code is in darssite.py
+
 	print(style["important"] + "Generating..." + style["reset"])
 
 	pageFile = open(config["settings"]["serveTo"] + "/index.html", "w+")
@@ -93,20 +105,22 @@ if len(sys.argv) == 1:
 	usage()
 	sys.exit()
 
-command = sys.argv[1]
+command = sys.argv[1] # isolate the command
 
 if command == "generate":
 	generate()
 elif command == "make":
 	generate()
-	serve.serve(PORT=config["settings"]["port"])
+	serve.serve(PORT=config["settings"]["port"], SERVE=config["settings"]["serveTo"]) # serve from port
 elif command == "serve":
-	serve.serve(PORT=config["settings"]["port"])
+	serve.serve(PORT=config["settings"]["port"], SERVE=config["settings"]["serveTo"]) # serve from port
 elif command == "plugins":
 	plugins()
 elif command == "version":
 	version()
 elif command == "install":
+	# run packman, see packman.py
+
 	try:
 		sys.argv[2]
 	except:
@@ -116,4 +130,5 @@ elif command == "install":
 	else:
 		packman.packman(sys.argv[2])
 else:
+	# otherwise, display the help
 	usage()
