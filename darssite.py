@@ -66,13 +66,20 @@ class DarsSite:
 				except:
 					print("plugin-init: No site() function in " + plugin + ".py!")
 
-	def append(self, obj):
+	def append(self, obj, head=False):
 		if self.writing:
-			self.internal += obj.getRaw()
+			if head:
+				self.headContent += obj.getRaw()
+			else:
+				self.internal += obj.getRaw()
 
-	def appendRaw(self, text):
+	def appendRaw(self, text, head=False):
 		if self.writing:
-			self.internal += text
+			if self.writing:
+				if head:
+					self.headContent += text
+				else:
+					self.internal += text
 
 	def setTitle(self, title):
 		if self.writing:
