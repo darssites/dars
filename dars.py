@@ -10,7 +10,7 @@
 
 GLOBALVERSION = "2.7"
 
-import sys, os, yaml
+import sys, os, yaml, argparse
 from darssite import DarsSite
 import serve, packman
 import importlib
@@ -32,20 +32,6 @@ with open('config/config.yml', 'r') as f:
 	config = yaml.load(f)
 
 import user # the user's generation code
-
-def usage():
-
-	# TEXT DISPLAYED FOR HELP
-
-	print(style["important"] + "Commands: " + style["reset"])
-	print("- generate")
-	print("- serve")
-	print("- make")
-	print("- plugins")
-	print("- version")
-	print("- install")
-	print(style["important"] + "\nExample:" + style["reset"])
-	print("python dars.py generate")
 
 def plugins():
 	# List all installed plugins
@@ -96,34 +82,26 @@ def generate():
 
 	user.code(page)
 
-if len(sys.argv) == 1:
-	usage()
-	sys.exit()
+parser = argparse.ArgumentParser(description="The controller for dars. http://github.com/darssites/dars")
+parser.add_argument("--generate", action="store_true", help="Generate the site")
+parser.add_argument("--make", action="store_true", help="Generate and serve the site")
+parser.add_argument("--serve", action="store_true", help="Serve the site on localhost")
+parser.add_argument("--plugins", action="store_true", help="List all installed plugins")
+parser.add_argument("--version", action="store_true", help="Display dars' version number")
+parser.add_argument("--install", dest="package", help="Download a package to the current project")
 
-command = sys.argv[1] # isolate the command
+args = parser.parse_args()
 
-if command == "generate":
+if args.generate:
 	generate()
-elif command == "make":
+elif args.make:
 	generate()
 	serve.serve(PORT=config["settings"]["port"], SERVE=config["settings"]["serveTo"]) # serve from port
-elif command == "serve":
+elif args.serve:
 	serve.serve(PORT=config["settings"]["port"], SERVE=config["settings"]["serveTo"]) # serve from port
-elif command == "plugins":
+elif args.plugins:
 	plugins()
-elif command == "version":
+elif args.version:
 	version()
-elif command == "install":
-	# run packman, see packman.py
-
-	try:
-		sys.argv[2]
-	except:
-		print(style["error"] + "Malformed packman command!" + style["reset"])
-		print("Usage:")
-		print("python dars.py install [gh user/repo OR package name]")
-	else:
-		packman.packman(sys.argv[2])
-else:
-	# otherwise, display the help
-	usage()
+elif args.package:
+	packman.packman(args.package)
