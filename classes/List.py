@@ -1,3 +1,5 @@
+from utils import filter
+
 class List:
 
 	content = ""
@@ -9,7 +11,7 @@ class List:
 		self.type = type
 
 		for item in items:
-			self.content += "<li>" + item + "</li>"
+			self.content += "<li>" + filter.filter(item) + "</li>"
 
 	def getRaw(self):
 		if self.ordered:

@@ -1,3 +1,5 @@
+from utils import filter
+
 class Button:
 
 	text = ""
@@ -5,9 +7,12 @@ class Button:
 	href = ""
 
 	def __init__(self, text, onclick="", href=""):
-		self.text = text
+		self.text = filter.filter(text)
 		self.onclick = onclick
 		self.href = href
+
+	def reparse(self):
+		self.text = filter.filter(self.text)
 
 	def getRaw(self):
 		if self.href == "":

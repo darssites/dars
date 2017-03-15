@@ -8,7 +8,7 @@
 ###	  GLOBAL VERSION   ###
 ##########################
 
-GLOBALVERSION = "2.6"
+GLOBALVERSION = "2.7"
 
 import sys, os, yaml
 from darssite import DarsSite
@@ -81,12 +81,7 @@ def generate():
 	try:
 		config["plugins"]
 	except:
-		print(style["warning"] + "No plugins section to your config.yml, not loading any plugins.")
-		print("NOTE: If you want plugins, add this at the bottom of your config:")
-		print("config:")
-		print("  - plugin")
-		print("  - names")
-		print("  - here" + style["reset"])
+		print(style["warning"] + "No plugins section to your config.yml, not loading any plugins." + style["reset"])
 	else:
 		# Load referenced plugins
 		for plugin in config["plugins"]:

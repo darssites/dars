@@ -1,4 +1,5 @@
 import re
+from utils import filter
 
 class Contact:
 
@@ -11,7 +12,10 @@ class Contact:
 		self.company = company
 		self.phone = phone
 		self.email = email
-		self.text = text
+		self.text = filter.filter(text)
+
+	def reparse(self):
+		self.text = filter.filter(self.text)
 
 	def getRaw(self):
 		if not re.match("[^@]+@[^@]+\.[^@]+", self.email):

@@ -1,3 +1,5 @@
+from utils import filter
+
 class Table():
 
 	content = ""
@@ -8,11 +10,11 @@ class Table():
 
 	def addCell(self, *content):
 		for single in content:
-			self.content += "<td>" + str(single) + "</td>"
+			self.content += "<td>" + filter.filter(str(single)) + "</td>"
 
 	def addHeader(self, *content):
 		for single in content:
-			self.content += "<th>" + str(single) + "</th>"
+			self.content += "<th>" + filter.filter(str(single)) + "</th>"
 
 	def newRow(self):
 		self.content += "</tr><tr>"
