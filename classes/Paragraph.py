@@ -3,13 +3,10 @@ import mistune
 class Paragraph:
 
 	text = ""
-	parse = False
 
-	def __init__(self, text, markdown=False):
+	def __init__(self, text):
 		self.text = text
-		self.parse = markdown
-		if self.parse:
-			self.text = mistune.markdown(self.text)
+		self.text = mistune.markdown(self.text)
 
 	def reparse(self):
 		self.text = mistune.Markdown(self.text)
